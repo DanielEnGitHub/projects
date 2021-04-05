@@ -1,15 +1,16 @@
 {% extends 'base/base.html' %}
 
 {% block content %}
-
+<br>
+<center><h1>VER SOLICITUDES</h1></center><br>
 <table class="table table-hover">
 	<thead>
 		<tr>
-			<td>No. Solicitud</td>
-			<td>Adoptante</td>
-			<td>No. Mascotas</td>
-			<td>Razones</td>
-			<td>Acciones</td>
+			<th scope="col">No. Solicitud</th>
+			<th scope="col">Adoptante</th>
+			<th scope="col">No. Mascotas</th>
+			<th scope="col">Razones</th>
+			<th scope="col">Acciones</th>
 		</tr>
 		
 	</thead>
@@ -23,7 +24,7 @@
 			<td>{{ solicitud.razones }}</td>
 			
 			<td>
-				<a class="btn btn-primary" href="#">Editar</a>
+				<a class="btn btn-warning" href="#">Editar</a>
 				<a class="btn btn-danger" href="#">Eliminar</a>
 			</td>
 		</tr>
