@@ -12,7 +12,6 @@
 			<th scope="col">Razones</th>
 			<th scope="col">Acciones</th>
 		</tr>
-		
 	</thead>
 	<tbody>
 		{% if object_list %}
@@ -22,18 +21,16 @@
 			<td>{{ solicitud.persona.nombre }} {{solicitud.persona.apellidos}}</td>
 			<td>{{ solicitud.numero_mascotas }}</td>
 			<td>{{ solicitud.razones }}</td>
-			
 			<td>
-				<a class="btn btn-warning" href="#">Editar</a>
-				<a class="btn btn-danger" href="#">Eliminar</a>
+				<a class="btn btn-warning" href=" {% url 'solicitudEdit' solicitud.id %} ">Editar</a>
+				<a class="btn btn-danger" href=" {% url 'solicitudDelete' solicitud.id %} ">Eliminar</a>
 			</td>
 		</tr>
 		{% endfor %}
-		
 		{% else %}
 		<h1>No hay registros de solicitudes</h1>
 		{% endif %}
 	</tbody>
-</table> 
+</table>
 
 {% endblock%}
