@@ -1,13 +1,10 @@
 from django.shortcuts import render
-from django.http import HttpResponseRedirect, HttpResponse
+from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
 
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from .models import Persona, Solicitud
 from .forms import SolicitudForm, PersonaForm
-
-def index(request):
-    return HttpResponse("INICIO")
 
 class SolicitudList(ListView):
     model = Solicitud

@@ -18,25 +18,29 @@
       
         <div class="collapse navbar-collapse" id="navbarColor01">
           <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-              <a class="nav-link" href=" {% url 'mascotaVer' %} ">INICIO
-                <span class="sr-only">(current)</span>
-              </a>
+
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">MASCOTA</a>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href=" {% url 'nuevo' %} ">AGREGAR</a>
+                <a class="dropdown-item" href=" {% url 'mascotaVer' %} ">VER</a>
+              </div>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href=" {% url 'nuevo' %} ">AGREGAR</a>
+
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">ADOPCION</a>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href=" {% url 'solicitud_crear' %} ">AGREGAR</a>
+                <a class="dropdown-item" href=" {% url 'solicitudVer' %} ">VER</a>
+              </div>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">OPCIONES</a>
               <div class="dropdown-menu">
-                <a class="dropdown-item" href="#">CERRAR SESION</a>
+                <a class="dropdown-item" href=" {% url 'logout' %} ">CERRAR SESION</a>
               </div>
             </li>
           </ul>
-          <form class="form-inline">
-            <input class="form-control" type="text" placeholder="Search">
-            <button class="btn btn-secondary" type="submit">Search</button>
-          </form>
         </div>
       </nav>
     {% endblock navbar %}
