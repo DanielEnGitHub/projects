@@ -1,0 +1,40 @@
+{% extends "base/base.html" %}
+
+{% block header %}
+    <br>
+    <center><H1>VER MASCOTAS</H1></center><br>
+    <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Genero</th>
+            <th scope="col">Edad</th>
+            <th scope="col">Fecha Rescate</th>
+            <th scope="col">Adoptante</th>
+            <th scope="col">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% if object_list %}
+            {% for mascotas in object_list %}
+                <tr>
+                    <th scope="row">{{mascotas.id}}</th>
+                    <td>{{mascotas.nombre}}</td>
+                    <td>{{mascotas.genero}}</td>
+                    <td>{{mascotas.edad_aproximada}}</td>
+                    <td>{{mascotas.fecha_rescate}}</td>
+                    <td>{{mascotas.persona.nombre}} {{mascotas.persona.apellido}}</td>
+                    <td> <a href=" {% url 'mascotaEdit' mascotas.id %} " class="btn btn-warning">EDITAR</a>
+                      <a href=" {% url 'mascotaDelete' mascotas.id %} " class="btn btn-danger">ELIMINAR</a> </td>
+                </tr>
+            {% endfor %}
+
+            {% else %}
+            <h2>No hay registros</h2>
+            {% endif %}
+          
+          
+        </tbody>
+      </table>
+{% endblock header %}

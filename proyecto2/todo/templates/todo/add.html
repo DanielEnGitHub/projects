@@ -1,0 +1,14 @@
+{% extends 'todo/base.html' %}
+
+{% block tittle %}Agregar{% endblock tittle %}
+
+{% block body %}
+    <h1>Agrega una nueva tarea</h1>
+
+	<form method="post">
+		{% csrf_token %}
+		{{ form }}
+		<button>Enviar</button>
+	</form>
+	<a href="{% url 'home' %}">Regresar al inicio</a>
+{% endblock body %}

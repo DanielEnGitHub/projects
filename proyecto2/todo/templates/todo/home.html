@@ -1,0 +1,15 @@
+{% extends 'todo/base.html' %}
+{% block body %}
+    <table border="1">
+        <tr>
+            <th>LISTA DE TAREAS</th>
+        </tr>
+    {% for tarea in  tareas %}
+        <tr>
+            <td>{{tarea}}</td>
+        </tr>
+    {% endfor %}
+    </table>
+
+    <a href="{% url 'agregar' %}">Agregar Tarea</a>
+{% endblock body %}

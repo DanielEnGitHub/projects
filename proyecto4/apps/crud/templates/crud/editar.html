@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block tittle %}
+    AGREGAR
+{% endblock tittle %}
+
+{% block body %}
+<div class="container text-center">
+    <div class="jumbotron">
+        <center><h1 class="display-4">AGREGAR TAREA</h1></center>
+    </div>
+    <hr><br>
+
+    <form method="POST">
+        {% csrf_token %}
+        {{ form }}
+        <br>
+        <br>
+        <button type="submit" class="btn btn-success">EDITAR</button>
+    
+        <a href=" {% url 'home' %} "><button type="button" class="btn btn-danger">CANCELAR</button></a>
+    </form>
+</div>
+{% endblock body %}

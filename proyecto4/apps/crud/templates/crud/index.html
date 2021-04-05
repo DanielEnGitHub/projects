@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block body %}
+  <div class="container">
+    <div class="jumbotron">
+        <center><h1 class="display-4">LISTA DE TAREAS</h1></center>
+        <center><p class="lead">Este es un crud simple con python utilizando DJANGO</p></center>
+    </div>
+  </div>
+  <br> 
+  <div class="container">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">TAREA</th>
+          <th scope="col" colspan="2">ACCION</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for tareas in tarea %}
+          <tr>
+            <th scope="row">{{tareas.id}}</th>
+            <td>{{tareas}}</td>
+            <td><a href=" {% url 'editar' tareas.id %} "><button type="button" class="btn btn-outline-success">EDITAR</button></a></td>
+            <td><a href=" {% url 'eliminar' tareas.id %} "><button type="button" class="btn btn-outline-danger">ELIMINAR</button></a></td>
+          </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+{% endblock body %}
