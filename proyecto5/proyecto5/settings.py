@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path, os
+from django.urls import reverse_lazy
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -39,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'apps.adopcion',
     'apps.mascota',
+    'apps.usuario',
 ]
 
 MIDDLEWARE = [
@@ -80,7 +82,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'refugio',
         'USER': 'postgres',
-        'PASSWORD': 'DJGGdjgg!1',
+        'PASSWORD': 'sistemas',
         'HOST': 'localhost',
         'PORT': 5432,
     }
@@ -126,3 +128,14 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (os.path.join(BASE_DIR,'static'),)
+
+LOGIN_REDIRECT_URL = reverse_lazy('solicitudVer')
+
+LOGOUT_REDIRECT_URL = reverse_lazy('login')
+
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 25
+EMAIL_HOST_USER = 'danieljgallina@gmail.com'
+EMAIL_HOST_PASSWORD = 'DJGGdjgg!1'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
