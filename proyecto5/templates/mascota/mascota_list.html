@@ -1,54 +1,52 @@
 {% extends "base/base.html" %}
+{% load static %}
+
+{% block staticextra %}
+  <link rel="stylesheet" type="text/css" href=" {% static 'datatables/datatables.min.css' %} "/>
+  <!--datables estilo bootstrap 4 CSS-->
+  <link rel="stylesheet" type="text/css" href=" {% static 'datatables/DataTables-1.10.18/css/dataTables.bootstrap4.min.css' %} ">
+{% endblock staticextra %}
 
 {% block header %}
-    <br>
-    <center><h1>VER MASCOTAS</h1></center><br>
-    <table class="table table-hover">
+  <br>
+  <div class="container">
+    <center><h1>LISTA DE MASCOTAS</h1></center><br>
+    <div class="table table-hover">
+      <table id="example" style="width:100%">
         <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Nombre</th>
-            <th scope="col">Genero</th>
-            <th scope="col">Edad</th>
-            <th scope="col">Fecha Rescate</th>
-            <th scope="col">Adoptante</th>
-            <th scope="col">Acciones</th>
-          </tr>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Nombre</th>
+              <th scope="col">Genero</th>
+              <th scope="col">Edad</th>
+              <th scope="col">Fecha de rescate</th>
+              <th scope="col">Aoptante</th>
+              <th scope="col">Acciones</th>
+            </tr>
         </thead>
         <tbody>
-            {% if object_list %}
-            {% for mascotas in object_list %}
-                <tr>
-                    <th scope="row">{{mascotas.id}}</th>
-                    <td>{{mascotas.nombre}}</td>
-                    <td>{{mascotas.genero}}</td>
-                    <td>{{mascotas.edad_aproximada}}</td>
-                    <td>{{mascotas.fecha_rescate}}</td>
-                    <td>{{mascotas.persona.nombre}} {{mascotas.persona.apellido}}</td>
-                    <td> <a href=" {% url 'mascotaEdit' mascotas.id %} " class="btn btn-warning">EDITAR</a>
-                      <a href=" {% url 'mascotaDelete' mascotas.id %} " class="btn btn-danger">ELIMINAR</a> </td>
-                </tr>
-            {% endfor %}
-
-            {% else %}
+          {% if object_list %}
+          {% for mascotas in object_list %}
+            <tr>
+              <th scope="col">{{mascotas.id}} </th>
+              <td>{{mascotas.nombre}}</td>
+              <td>{{mascotas.genero}}</td>
+              <td>{{mascotas.edad_aproximada}}</td>
+              <td>{{mascotas.fecha_rescate}}</td>
+              <td>{{mascotas.persona.nombre}} {{mascotas.persona.apellido}}</td>
+              <td><a href=" {% url 'mascotaEdit' mascotas.id %} " class="btn btn-warning">EDITAR</a>  <a href=" {% url 'mascotaDelete' mascotas.id %} " class="btn btn-danger">ELIMINAR</a></td>
+            </tr>
+          {% endfor %}
+          {% else %}
             <h2>No hay registros</h2>
-            {% endif %}
+          {% endif %}
         </tbody>
       </table>
-      <div class="container">
-        <ul class="pagination">
-          <li class="page-item">
-            
-            {% if page_obj.has_previous %}
-            <a class="page-link" href="?page={{ page_obj.previous_page_number }}">&laquo;</a>
-            {% endif %}
-          </li>
-          <li class="page-item">
-            
-            {% if page_obj.has_next %}
-            <a class="page-link" href="?page={{ page_obj.next_page_number }}">&raquo;</a>
-            {% endif %}
-          </li>
-        </ul>
-      </div>
+    </div>
+  </div>
+{% block extrajs %}
+  <script type="text/javascript" src=" {% static 'datatables/datatables.min.js' %} "></script>
+  <script type="text/javascript" src=" {% static 'js/main.js' %} "></script>
+{% endblock extrajs %}
+
 {% endblock header %}
