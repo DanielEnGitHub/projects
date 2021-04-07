@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path, os
 from django.urls import reverse_lazy
+from decouple import config, Csv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -21,12 +22,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '%4@-x7o&==ugxn7(ztv%tf*v-(quj39%^2e73v5xwfy=t&_n&$'
+SECRET_KEY = config("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config('DEBUG', default=True,cast=bool)
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
 
 
 # Application definition
@@ -80,11 +81,11 @@ WSGI_APPLICATION = 'proyecto5.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'refugio',
-        'USER': 'postgres',
-        'PASSWORD': 'sistemas',
-        'HOST': 'localhost',
-        'PORT': 5432,
+        'NAME': config('DB_NAME'),
+        'USER': config('DB_USER'),
+        'PASSWORD': config('DB_PASSWORD'),
+        'HOST': config('DB_HOST'),
+        'PORT': config('DB_PORT'),
     }
 }
 
@@ -111,7 +112,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
-LANGUAGE_CODE = 'es-us'
+LANGUAGE_CODE = 'es-gt'
 
 TIME_ZONE = 'UTC'
 
@@ -136,6 +137,6 @@ LOGOUT_REDIRECT_URL = reverse_lazy('login')
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 25
-EMAIL_HOST_USER = 'danieljgallina@gmail.com'
-EMAIL_HOST_PASSWORD = 'DJGGdjgg!1'
+EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
